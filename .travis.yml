@@ -5,12 +5,16 @@ language: java
 services:
   - docker
 
+cache:
+  directories:
+   - /home/travis/.maven/
+
 script:
   - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin # put aws-cli in the path
+  - export PATH=$PATH:$HOME/.local/bin
   - sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
   - sudo chmod +x /usr/local/bin/ecs-cli
-  - eval $(aws ecr get-login --region us-east-2 | sed 's/-e none//') #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - eval $(aws ecr get-login --region us-east-2 | sed 's/-e none//')
   - ./gradlew pushImage
   - ecs-cli configure --cluster awsdemo --region us-east-2
   - ecs-cli compose --file docker/awsdemo-compose.yml service down
