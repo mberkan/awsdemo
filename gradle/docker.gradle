@@ -29,4 +29,8 @@ task buildImage(type: DockerBuildImage) {
     tag = "848300216389.dkr.ecr.us-east-2.amazonaws.com/${project.name}:${version}"
 }
 
+task pushImage(type: DockerPushImage, dependsOn: buildImage) {
+    imageName = buildImage.tag
+}
+
 buildImage.dependsOn build
