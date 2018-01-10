@@ -10,6 +10,6 @@ public class HomePageController {
     @RequestMapping("/")
     @ResponseBody
     public String helloWorld() {
-        return "Hello world";
+        return "Hello world (2)";
     }
 }

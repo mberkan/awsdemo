@@ -26,7 +26,7 @@ task createDockerfile(type: Dockerfile) {
 task buildImage(type: DockerBuildImage) {
     dependsOn createDockerfile
     inputDir = createDockerfile.destFile.parentFile
-    tag = "mberkan/${project.name}:${version}"
+    tag = "848300216389.dkr.ecr.us-east-2.amazonaws.com/${project.name}:${version}"
 }
 
 buildImage.dependsOn build

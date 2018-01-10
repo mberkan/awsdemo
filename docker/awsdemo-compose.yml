@@ -2,6 +2,6 @@ version: "2"
 
 services:
     awsdemo:
-        image: 848300216389.dkr.ecr.us-east-2.amazonaws.com/awsdemo:latest
+        image: 848300216389.dkr.ecr.us-east-2.amazonaws.com/awsdemo:0.0.1-SNAPSHOT
         ports:
-            - "8080:8080"
+            - "80:8080"
