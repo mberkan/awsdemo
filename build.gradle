@@ -10,24 +10,36 @@ buildscript {
 	}
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
+subprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'org.springframework.boot'
 
 
-group = 'pl.mberkan.softwarecraftmanship'
+	group = 'pl.mberkan.softwarecraftmanship'
 
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
 
-repositories {
-	mavenCentral()
+	repositories {
+		mavenCentral()
+	}
+
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'
+        }
+    }
+
+	dependencies {
+		compile('org.springframework.boot:spring-boot-starter-web')
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+	}
+
+	apply from: '../gradle/docker.gradle'
+
 }
-
-
-dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-}
-
-apply from: 'gradle/docker.gradle'

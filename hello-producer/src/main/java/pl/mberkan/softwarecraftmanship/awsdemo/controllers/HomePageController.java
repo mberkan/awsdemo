@@ -1,15 +1,17 @@
 package pl.mberkan.softwarecraftmanship.awsdemo.controllers;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.mberkan.softwarecraftmanship.awsdemo.Hello;
 
 @Controller
 public class HomePageController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String helloWorld() {
-        return "Hello world (3)";
+    public Hello helloWorld() {
+        return new Hello("Hello producer!");
     }
 }

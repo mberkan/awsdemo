@@ -1,0 +1,3 @@
+include 'eureka-server',
+        'hello-producer',
+        'hello-consumer'

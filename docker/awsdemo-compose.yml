@@ -1,7 +1,45 @@
 version: "2"
 
+#services:
+#    awsdemo:
+#        image: 848300216389.dkr.ecr.us-east-2.amazonaws.com/awsdemo:0.0.1-SNAPSHOT
+#        ports:
+#            - "8080:8080"
+#        logging:
+#            driver: awslogs
+#            options:
+#                awslogs-group: awsdemo
+#                awslogs-region: us-east-1
+#                awslogs-stream-prefix: awsdemo
+#
+#
+
 services:
-    awsdemo:
-        image: 848300216389.dkr.ecr.us-east-2.amazonaws.com/awsdemo:0.0.1-SNAPSHOT
+    eureka-server:
+        image: 848300216389.dkr.ecr.us-east-1.amazonaws.com/eureka-server:0.0.1-SNAPSHOT
+        logging:
+            driver: awslogs
+            options:
+                awslogs-group: awsdemo
+                awslogs-region: us-east-1
+                awslogs-stream-prefix: eureka-server
+    hello-consumer:
+        image: 848300216389.dkr.ecr.us-east-1.amazonaws.com/hello-consumer:0.0.1-SNAPSHOT
         ports:
-            - "80:8080"
+            - "8090:8090"
+        logging:
+            driver: awslogs
+            options:
+                awslogs-group: awsdemo
+                awslogs-region: us-east-1
+                awslogs-stream-prefix: hello-consumer
+    hello-producer:
+        image: 848300216389.dkr.ecr.us-east-1.amazonaws.com/hello-producer:0.0.1-SNAPSHOT
+        ports:
+            - "8080:8080"
+        logging:
+            driver: awslogs
+            options:
+                awslogs-group: awsdemo
+                awslogs-region: us-east-1
+                awslogs-stream-prefix: hello-producer
